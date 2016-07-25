@@ -29,8 +29,8 @@ public class Truncheon_hit : MonoBehaviour {
 
         if (Truncheon == true && Input.GetMouseButton(0) && b1 == false)
         {
-            animation.Play(Anim_truncher_hit.name);
-            audio.PlayOneShot(Truncher_hit);
+            GetComponent<Animation>().Play(Anim_truncher_hit.name);
+            GetComponent<AudioSource>().PlayOneShot(Truncher_hit);
             b1 = true;
             Time_1 = 0;
         }

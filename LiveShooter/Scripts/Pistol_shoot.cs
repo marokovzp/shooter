@@ -34,7 +34,7 @@ public class Pistol_shoot : MonoBehaviour
     void Start()
     {
 
-        animation[Anim_Pistol_shoot_1.name].speed = Anim_shoot_speed;
+        GetComponent<Animation>()[Anim_Pistol_shoot_1.name].speed = Anim_shoot_speed;
         Time_1 = Recharge_shoot_time;
 
     }
@@ -70,11 +70,11 @@ public class Pistol_shoot : MonoBehaviour
             {
                 if (a2 < bullets)
                 {
-                    animation.Play(Anim_Pistol_shoot_1.name);
+                    GetComponent<Animation>().Play(Anim_Pistol_shoot_1.name);
 
                     Instantiate(Bullet, Bullet_pos.transform.position, Bullet_pos.rotation);
 
-                    audio.PlayOneShot(shoot);
+                    GetComponent<AudioSource>().PlayOneShot(shoot);
 
                     Time_1 = 0;
                     a2 = a2 + 1;
@@ -101,10 +101,10 @@ public class Pistol_shoot : MonoBehaviour
 
             if (a2 > bullets)
             {
-                animation.Play(Anim_Pistol_recharge.name);
+                GetComponent<Animation>().Play(Anim_Pistol_recharge.name);
                 a2 = 0;
                 a3 = true;
-                audio.PlayOneShot(recharge);
+                GetComponent<AudioSource>().PlayOneShot(recharge);
                 FPC.GetComponent<Weapon>().Pistol_holder --;
             }
 

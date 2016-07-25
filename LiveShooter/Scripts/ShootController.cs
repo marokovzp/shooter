@@ -21,7 +21,7 @@ public class ShootController : MonoBehaviour {
 
 	void Awake () {
 
-        animation[shootAnimationClip.name].speed = shootAnimationClipSpeed;
+        GetComponent<Animation>()[shootAnimationClip.name].speed = shootAnimationClipSpeed;
         shootAudioSorce = GetComponent<AudioSource>();
 	}
 	
@@ -31,7 +31,7 @@ public class ShootController : MonoBehaviour {
         afterShootTime -= Time.deltaTime;
         if (afterShootTime <= 0)
         {
-            animation.Play(shootAnimationClip.name);
+            GetComponent<Animation>().Play(shootAnimationClip.name);
             Instantiate(Bullet, MainCamera.transform.position, MainCamera.transform.rotation);
             shootAudioSorce.PlayOneShot(shoot);
 

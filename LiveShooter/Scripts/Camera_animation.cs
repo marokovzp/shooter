@@ -11,7 +11,7 @@ public class Camera_animation : MonoBehaviour {
 	
         if (Input.GetButton ("Vertical") || Input.GetButton ("Horizontal"))
         {
-            animation.Play(walk.name);
+            GetComponent<Animation>().Play(walk.name);
         }
 
 

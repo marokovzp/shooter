@@ -13,15 +13,6 @@ public class WeaponController : MonoBehaviour {
         activeWeapon = this.GetComponent<FPC_Equipment>().weapon;
     }
 
-    /// <summary>
-    /// Реагирует на столкновение с объектом
-    /// </summary>
-    /// <param name="col">с чем столкнулись</param>
-    public void OnTriggerEnter(Collider col)
-    {
-        if (col.CompareTag("weapon")) AddWeapon(col.gameObject);
-    }	
-
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -42,7 +33,7 @@ public class WeaponController : MonoBehaviour {
 	}
 
     
-    private void AddWeapon(GameObject weapon)
+    public void AddWeapon(GameObject weapon)
     {
         foreach (GameObject w in weaponList)
         {
@@ -62,13 +53,10 @@ public class WeaponController : MonoBehaviour {
 
         weapon.GetComponent<BoxCollider>().enabled = false;
         weapon.SetActive(false);
-
-        Debug.Log(weapon.GetComponent<WeaponParameters>().nameWeapon);
     }
 
     private void ChangeWeapon()
     {
-        Debug.Log("qqqqqq");
         this.activeWeapon.SetActive(false);
 
         int tmp = weaponList.IndexOf(this.activeWeapon);
@@ -99,6 +87,10 @@ public class WeaponController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect((Screen.width - 50) / 2, (Screen.height - 50) / 2, 50, 50), activeWeapon.GetComponent<WeaponParameters>().Sight);
+        if (activeWeapon.GetComponent<WeaponParameters>().type == "Gun" ||
+            activeWeapon.GetComponent<WeaponParameters>().type == "MachineGun")
+        {
+            GUI.DrawTexture(new Rect((Screen.width - 50) / 2, (Screen.height - 50) / 2, 50, 50), activeWeapon.GetComponent<WeaponParameters>().Sight);
+        }
     }
 }

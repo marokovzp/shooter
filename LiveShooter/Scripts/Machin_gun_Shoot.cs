@@ -46,7 +46,7 @@ public class Machin_gun_Shoot : MonoBehaviour
     void Start()
     {
        
-        animation[shoot_1.name].speed = Anim_shoot_speed;
+        GetComponent<Animation>()[shoot_1.name].speed = Anim_shoot_speed;
         Time_1 = Recharge_shoot_time;
 
         particles.SetActive(false);
@@ -86,11 +86,11 @@ public class Machin_gun_Shoot : MonoBehaviour
             {
                 if (a2 < bullets)
                 {
-                animation.Play(shoot_1.name);
+                GetComponent<Animation>().Play(shoot_1.name);
 
                 Instantiate(Bullet, Bullet_pos.transform.position, Bullet_pos.rotation);
 
-                audio.PlayOneShot(shoot);
+                GetComponent<AudioSource>().PlayOneShot(shoot);
                 
                 Time_1 = 0;
                 a1 = true;
@@ -122,10 +122,10 @@ public class Machin_gun_Shoot : MonoBehaviour
 
             if (a2 > bullets)
             {
-                animation.Play(Anim_recharge.name);
+                GetComponent<Animation>().Play(Anim_recharge.name);
                 a2 = 0;
                 a3 = true;
-                audio.PlayOneShot(recharge);
+                GetComponent<AudioSource>().PlayOneShot(recharge);
 
                FPC.GetComponent<Weapon>().Machin_gun_holder--;
 
@@ -161,7 +161,7 @@ public class Machin_gun_Shoot : MonoBehaviour
             }
             if (Sniper_trigger == false)
             {
-                animation.Play(Anim_sniper_off.name);
+                GetComponent<Animation>().Play(Anim_sniper_off.name);
                 
             }
         }
