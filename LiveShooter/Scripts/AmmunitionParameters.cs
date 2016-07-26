@@ -4,5 +4,5 @@ using System.Collections;
 public class AmmunitionParameters : MonoBehaviour {
     public string type;
     public string nameAmmunition;
-    public string ammunitionCapacity;
+    public int ammunitionCapacity;
 }

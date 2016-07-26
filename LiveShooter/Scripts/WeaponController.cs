@@ -55,14 +55,16 @@ public class WeaponController : MonoBehaviour {
 
     private void ChangeWeapon()
     {
+        if (RechargeWeapon()) return;       //перезаряжаемся, если получится
+
         this.activeWeapon.SetActive(false);
 
         int tmp = weaponList.IndexOf(this.activeWeapon);
         for (int i = tmp + 1; i < weaponList.Count; i++)  //перебираем лист от 0; до последнего; с шагом 
         {
             if (weaponList[i].GetComponent<WeaponParameters>().holderCount != 0)
-            {
-                //то взять в руку
+            {                
+                //меняем оружие
                 this.activeWeapon = weaponList[i];
                 this.activeWeapon.SetActive(true);
                 
@@ -81,6 +83,21 @@ public class WeaponController : MonoBehaviour {
                 return;                                             //выйти из мтода Update()
             }
         }
+    }
+
+    private bool RechargeWeapon()
+    {
+        foreach(GameObject amm in this.GetComponent<FPC_Equipment>().ammunitionList)
+        {
+            //одинаковые ли названия у аммуниции в листе и в активном оружии
+            if (amm.GetComponent<AmmunitionParameters>().nameAmmunition == activeWeapon.GetComponent<WeaponParameters>().holder.GetComponent<AmmunitionParameters>().nameAmmunition)
+            {
+                activeWeapon.GetComponent<WeaponParameters>().holderCount = amm.GetComponent<AmmunitionParameters>().ammunitionCapacity;
+                this.GetComponent<FPC_Equipment>().ammunitionList.Remove(amm);
+                return true;
+            }            
+        }
+        return false;
     }
 
     void OnGUI()
