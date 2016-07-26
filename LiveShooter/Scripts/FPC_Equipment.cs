@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class FPC_Equipment : MonoBehaviour {
+public class FPC_Equipment : MonoBehaviour
+{
 
     public GameObject weapon;
     public GameObject arm;
@@ -16,5 +17,11 @@ public class FPC_Equipment : MonoBehaviour {
         weaponList.Add(weapon);
 
         ammunitionList = new List<GameObject>();
+    }
+
+    public void AddAmmunition(GameObject ammunition)
+    {
+        Debug.Log("ammunition added");
+        ammunitionList.Add(ammunition);
     }
 }
