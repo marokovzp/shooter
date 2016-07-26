@@ -13,5 +13,9 @@ public class AmmunitionController : MonoBehaviour {
     {
         Debug.Log("ammunition addede");
         ammunitionList.Add(ammunition);
+
+        ammunition.transform.parent = mainCamera.transform;
+        ammunition.GetComponent<BoxCollider>().enabled = false;
+        ammunition.SetActive(false);
     }
 }
