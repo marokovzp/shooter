@@ -25,7 +25,10 @@ public class ShootController : MonoBehaviour {
         shootAudioSorce = GetComponent<AudioSource>();
 	}
 	
-
+    void Start()
+    {
+        afterShootTime = 0;
+    }
 	void Update () {
 
         afterShootTime -= Time.deltaTime;

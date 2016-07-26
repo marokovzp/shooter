@@ -21,18 +21,16 @@ public class WeaponController : MonoBehaviour {
         if (this.activeWeapon.GetComponent<WeaponParameters>().holderCount == 0) ChangeWeapon();
 
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             this.activeWeapon.GetComponent<ShootController>().enabled = true;
-
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             this.activeWeapon.GetComponent<ShootController>().enabled = false;
         }
-	}
+    }
 
-    
     public void AddWeapon(GameObject weapon)
     {
         foreach (GameObject w in weaponList)
