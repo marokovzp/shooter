@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class WeaponController : MonoBehaviour {
+public class WeaponController : MonoBehaviour
+{
 
     private List<GameObject> weaponList;
     public GameObject mainCamera;
     private GameObject activeWeapon;
+
+
 
     private void Start()
     {
@@ -20,28 +23,22 @@ public class WeaponController : MonoBehaviour {
     public void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("weapon")) AddWeapon(col.gameObject);
-    }	
+    }
 
-	void Update () {
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangeWeapon();
-        }
-        if (this.activeWeapon.GetComponent<WeaponParameters>().holderCount == 0) ChangeWeapon();
+        { ChangeWeapon(); }
+        
+        if (this.activeWeapon.GetComponent<WeaponParameters>().holderCount == 0)
+        { ChangeWeapon(); }
+
+        if (Input.GetMouseButton(0) && this.activeWeapon.GetComponent<ShootController>().afterShootTime <= 0)
+        { this.activeWeapon.GetComponent<ShootController>().OneShoot(); }
+
+    }
 
 
-        if (Input.GetMouseButton(0))
-        {
-            this.activeWeapon.GetComponent<ShootController>().enabled = true;
-
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            this.activeWeapon.GetComponent<ShootController>().enabled = false;
-        }
-	}
-
-    
     private void AddWeapon(GameObject weapon)
     {
         foreach (GameObject w in weaponList)
@@ -79,7 +76,7 @@ public class WeaponController : MonoBehaviour {
                 //то взять в руку
                 this.activeWeapon = weaponList[i];
                 this.activeWeapon.SetActive(true);
-                
+
                 return;                                             //выйти из мтода Update()
             }
         }
@@ -99,6 +96,7 @@ public class WeaponController : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect((Screen.width - 50) / 2, (Screen.height - 50) / 2, 50, 50), activeWeapon.GetComponent<WeaponParameters>().Sight);
+        if (this.activeWeapon.GetComponent<WeaponParameters>().Sight != null)
+            GUI.DrawTexture(new Rect((Screen.width - 50) / 2, (Screen.height - 50) / 2, 50, 50), activeWeapon.GetComponent<WeaponParameters>().Sight);
     }
 }
