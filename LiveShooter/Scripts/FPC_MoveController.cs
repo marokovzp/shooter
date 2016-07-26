@@ -11,6 +11,6 @@ public class FPC_MoveController : MonoBehaviour {
     {
         Debug.Log(col.gameObject.name);
         if (col.CompareTag("weapon")) { this.GetComponent<WeaponController>().AddWeapon(col.gameObject); }
-        else if (col.CompareTag("ammunition")) { this.GetComponent<FPC_Equipment>().AddAmmunition(col.gameObject); }
+        else if (col.CompareTag("ammunition")) { this.GetComponent<AmmunitionController>().AddAmmunition(col.gameObject); }
     }
 }

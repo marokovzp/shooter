@@ -17,10 +17,4 @@ public class FPC_Equipment : MonoBehaviour {
 
         ammunitionList = new List<GameObject>();
     }
-
-    public void AddAmmunition(GameObject ammunition)
-    {
-        Debug.Log("ammunition addede");
-        ammunitionList.Add(ammunition);
-    }
 }
