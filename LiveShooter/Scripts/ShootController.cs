@@ -19,18 +19,18 @@ public class ShootController : MonoBehaviour {
 
     private AudioSource shootAudioSorce;
 
-	void Awake () {
+	void Start () {
 
         GetComponent<Animation>()[shootAnimationClip.name].speed = shootAnimationClipSpeed;
         shootAudioSorce = GetComponent<AudioSource>();
 	}
-	
-    void Start()
-    {
-        afterShootTime = 0;
-    }
-	void Update () {
+	//void Update () {
 
+        
+	//}
+
+    public void Shot()
+    {
         afterShootTime -= Time.deltaTime;
         if (afterShootTime <= 0)
         {
@@ -40,5 +40,5 @@ public class ShootController : MonoBehaviour {
 
             afterShootTime = shootDelay;
         }
-	}
+    }
 }

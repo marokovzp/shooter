@@ -18,16 +18,14 @@ public class WeaponController : MonoBehaviour {
         {
             ChangeWeapon();
         }
-        if (this.activeWeapon.GetComponent<WeaponParameters>().holderCount == 0) ChangeWeapon();
+        if (this.activeWeapon.GetComponent<WeaponParameters>().holderCount == 0)        //закончились патроны
+            if(!RechargeWeapon())                                                       //пробуем перезарядить
+                ChangeWeapon();                                                         //или меняем оружие
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            this.activeWeapon.GetComponent<ShootController>().enabled = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            this.activeWeapon.GetComponent<ShootController>().enabled = false;
+            this.activeWeapon.GetComponent<ShootController>().Shot();
         }
     }
 
@@ -55,7 +53,6 @@ public class WeaponController : MonoBehaviour {
 
     private void ChangeWeapon()
     {
-        if (RechargeWeapon()) return;       //перезаряжаемся, если получится
 
         this.activeWeapon.SetActive(false);
 
